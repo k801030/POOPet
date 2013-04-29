@@ -8,10 +8,12 @@ public class MyArena extends POOArena{
 		return false;
 		
 	}
+	
 	@Override
     public void show(){
     	
     }
+	
     @Override
     public POOCoordinate getPosition(POOPet p){
     	return null;
