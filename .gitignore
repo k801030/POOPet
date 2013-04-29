@@ -4,5 +4,6 @@ ntu/
 .settings/
 .classpath
 .project
+.jar
 *.log
 *.class
