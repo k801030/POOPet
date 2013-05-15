@@ -1,16 +1,11 @@
-package src;
-import ntu.csie.oop13spring.*;
+package ntu.csie.oop13spring;
+
 
 public class MyPet1 extends POOPet{
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public MyPet1(){
+		System.out.println("success to load  MyPet1");
 	}
-
 	@Override
 	protected POOAction act(POOArena arena) {
 		// TODO Auto-generated method stub

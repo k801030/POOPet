@@ -1,8 +1,8 @@
-package src;
+package ntu.csie.oop13spring;
 
-import ntu.csie.oop13spring.*;
 
 public class MyArena extends POOArena{
+	
 	@Override
 	public boolean fight(){
 		return false;
