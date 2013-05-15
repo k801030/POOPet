@@ -4,7 +4,8 @@ ntu/
 .settings/
 .classpath
 .project
-.jar
-.sh
+*.jar
+*.sh
 *.log
 *.class
+.gitignore

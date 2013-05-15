@@ -3,18 +3,18 @@ package ntu.csie.oop13spring;
 import java.util.ArrayList;
 
 
-public class MyArena extends POOArena{
+public class ArenaLand extends POOArena{
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
     
     public void addPet(POOPet p){
         allpets.add(p);
-        System.out.println("hi");
     }
 	@Override
 	public boolean fight(){
-		
-		//for(int i=0;i<this.)
-		System.out.println(this.getAllPets());
+		POOPet[] petList = new POOPet[5];
+
+		for(int i=0;i<allpets.size();i++)
+			System.out.println(allpets.get(i).getName());
 		return false;
 	}
 	@Override

@@ -1,16 +1,19 @@
 package ntu.csie.oop13spring;
 
 
-public class MyPet1 extends POOPet{
+public class PetWater extends POOPet{
     private int HP, MP, AGI;
     private String name;
-    private int totalNum = 0;
-	public MyPet1(){
-		totalNum++;
-		setName("Water"+totalNum);
+    private static int totalNum = 1;
+	public PetWater(){
+		if(totalNum==1)
+			setName("Water");
+		else
+			setName("Water"+totalNum);
 		setAGI(AGI);
 		setHP(HP);
 		setMP(MP);
+		totalNum++;
 		//System.out.println("success to load  MyPet1");
 	}
 	@Override
