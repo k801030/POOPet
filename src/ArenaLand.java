@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.sun.corba.se.spi.orbutil.fsm.Action;
+
 public class ArenaLand extends POOArena{
 	private final int size = 16;
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
@@ -18,18 +20,23 @@ public class ArenaLand extends POOArena{
 	@Override
 	public boolean fight(){
 		Scanner scanner = new Scanner(System.in);
-
-		for(int i=0;i<allpets.size();i++){
-				allpets.get(i).act(this);
-				scanner.next();
-				return true;
-		}
+		
+		
+		POOAction action = new POOAction();
+		
+		action = allpets.get(round).act(this);
+		//System.out.println(action.dest);
+		round+=1;
+		round%=allpets.size();
+		scanner.next();
 		return true;
 
 	}
 	
 	@Override
     public void show(){
+		int x,y;
+		
 		// create basic map
 		Coordinate point = new Coordinate();
 		char[][] map = new char[size][size];
@@ -38,18 +45,26 @@ public class ArenaLand extends POOArena{
     			map[i][j] = '.';
     	
     	// locate pets' positions
-    	for(int i=0;i<size;i++)
-    		for(int j=0;j<size;j++){
-    			point.setX(j);
-    			point.setY(i);		
-    			char num = '1';
-    			// check each pet
-    			for(int k=0;k<allpets.size();k++,num++)
-    				if(point.equals(allposi.get(k)))
-    					map[i][j] = num;
-    		}
+    	x = allposi.get(0).getX();
+    	y = allposi.get(0).getY();
+    	map[y][x]= 'M'; 
+    	
+    	x = allposi.get(1).getX();
+    	y = allposi.get(1).getY();
+    	map[y][x]= 'W'; 
+    	
     	printMap(map);
+    	
+    	for(int i=0;i<allpets.size();i++)
+    		showStatus(allpets.get(i));
     }
+	private void showStatus(POOPet pet){
+		
+		System.out.print("["+pet.getName()+"] ");
+		System.out.print("HP:"+pet.getHP()+" ");
+		System.out.print("MP:"+pet.getMP()+" ");
+		System.out.println("AGI:"+pet.getAGI()+" ");
+	}
 	
 	private void printMap(char[][] map){
     	for(int i=0;i<size;i++){
@@ -58,6 +73,7 @@ public class ArenaLand extends POOArena{
     		System.out.print("\n");
     	}
 	}
+	
 	
 	
 	

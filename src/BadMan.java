@@ -12,14 +12,22 @@ public class BadMan extends POOPet{
 	
 	@Override
 	protected POOAction act(POOArena arena){
-		
-		move(arena);
+		POOPet[] pets = arena.getAllPets();
+		POOAction action = new POOAction();
+		StrongKick strongKick = new StrongKick();
+		if(move(arena)==null){
 			//start fight
+			action.dest = pets[1];
+			action.skill = strongKick;
+		}else{
+			action.dest = this;
+			action.skill = strongKick;
 			
-		
+		}
 
-		return null;
+		return action;
 	}
+	
 	
 	protected POOCoordinate move(POOArena arena){
 		ArenaLand arenaLand = (ArenaLand) arena;
@@ -30,14 +38,14 @@ public class BadMan extends POOPet{
 		Coordinate[] posi = new Coordinate[2];
 		posi = arenaLand.getAllPosi();
 		for(int i=0;i<arenaLand.getPetNum();i++){
-			distance = Math.abs(posi[0].getX()+posi[0].getY()-posi[1].getX()-posi[1].getY());
+			distance = Math.abs(posi[0].getX()-posi[1].getX())+Math.abs(posi[0].getY()-posi[1].getY());
 			if(max < distance){
 				max = distance;
 			}
 		}
 		int agi = this.getAGI();
 		while(agi>0){
-			distance = Math.abs(posi[0].getX()+posi[0].getY()-posi[1].getX()-posi[1].getY());
+			distance = Math.abs(posi[0].getX()-posi[1].getX())+Math.abs(posi[0].getY()-posi[1].getY());
 			// distance=1 means starting fight
 			
 			if(distance==1){
@@ -62,17 +70,20 @@ public class BadMan extends POOPet{
     }
 	
 
-	//skill
-	class BurnSkill extends POOSkill{
-		
-		public void act(POOPet pet){
-			
-		}
+}
+
+//skill
+class StrongKick extends POOSkill{
+	
+	public void act(POOPet pet){
+		int hp = pet.getHP();
+		if(hp>0)
+			pet.setHP(hp-1);
 	}
-	class ExplosionSkill extends POOSkill{
+}
+class ExplosionSkill extends POOSkill{
+	
+	public void act(POOPet pet){
 		
-		public void act(POOPet pet){
-			
-		}
 	}
 }
