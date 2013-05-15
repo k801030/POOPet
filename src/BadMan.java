@@ -1,18 +1,13 @@
 package ntu.csie.oop13spring;
 
 
-public class PetFire extends POOPet{
-    private static int totalNum = 1;
-	public PetFire(){
-		if(totalNum==1)
-			setName("Fire");
-		else
-			setName("Fire"+totalNum);
+public class BadMan extends POOPet{
+	public BadMan(){
+		setName("BadMan");
 		setAGI(2);
 		setHP(100);
 		setMP(80);
 		
-		totalNum++;
 	}
 	
 	@Override
@@ -27,11 +22,9 @@ public class PetFire extends POOPet{
 	}
 	
 	protected POOCoordinate move(POOArena arena){
-		POOPet[] pet = new POOPet[3];
-		pet = arena.getAllPets();
 		ArenaLand arenaLand = (ArenaLand) arena;
 		int max=0,distance;
-		int near=0;
+
 		
 		// find nearest
 		Coordinate[] posi = new Coordinate[2];
@@ -39,7 +32,6 @@ public class PetFire extends POOPet{
 		for(int i=0;i<arenaLand.getPetNum();i++){
 			distance = Math.abs(posi[0].getX()+posi[0].getY()-posi[1].getX()-posi[1].getY());
 			if(max < distance){
-				near = i;
 				max = distance;
 			}
 		}

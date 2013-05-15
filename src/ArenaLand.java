@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ArenaLand extends POOArena{
-	private final int size = 8;
+	private final int size = 16;
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
 	private ArrayList<Coordinate> allposi = new ArrayList<Coordinate>(0);
     private int round = 0;
@@ -18,14 +18,14 @@ public class ArenaLand extends POOArena{
 	@Override
 	public boolean fight(){
 		Scanner scanner = new Scanner(System.in);
-		String tmp = scanner.next();
-		if(tmp.equals("a")){
-			for(int i=0;i<allpets.size();i++)
+
+		for(int i=0;i<allpets.size();i++){
 				allpets.get(i).act(this);
-			return true;
+				scanner.next();
+				return true;
 		}
-		else
-			return false;
+		return true;
+
 	}
 	
 	@Override

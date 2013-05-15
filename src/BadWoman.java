@@ -1,21 +1,15 @@
 package ntu.csie.oop13spring;
 
 
-public class PetWater extends POOPet{
-    private static int totalNum = 1;
-    private Coordinate c = new Coordinate();
-    public PetWater(){
-		if(totalNum==1)
-			setName("Water");
-		else
-			setName("Water"+totalNum);
+public class BadWoman extends POOPet{
+    public BadWoman(){
+			setName("BadWoman");
 		setAGI(2);
 		setHP(90);
 		setMP(100);
-		
-		totalNum++;
-		//System.out.println("success to load  MyPet1");
+
 	}
+    
 	@Override
 	protected POOAction act(POOArena arena) {
 		POOAction action = new POOAction();
