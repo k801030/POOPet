@@ -11,6 +11,7 @@ public class PetWind extends POOPet{
 		setAGI(3);
 		setHP(100);
 		setMP(50);
+		
 		totalNum++;
 		
 	}

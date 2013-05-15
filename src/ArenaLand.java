@@ -1,26 +1,31 @@
 package ntu.csie.oop13spring;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class ArenaLand extends POOArena{
 	private final int size = 8;
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
-    private ArrayList<Coordinate> petCoordinates = new ArrayList<Coordinate>(0);
+	private ArrayList<Coordinate> allposi = new ArrayList<Coordinate>(0);
     private int round = 0;
     public void addPet(POOPet p){
         allpets.add(p);
         Coordinate c = new Coordinate();
-        c = makeRandomCoordinate(c);
-        petCoordinates.add(c);
+        allposi.add(makeRandomCoordinate(c));
+        
     }
     
 	@Override
 	public boolean fight(){
-		
-		if(round++<1)
+		Scanner scanner = new Scanner(System.in);
+		String tmp = scanner.next();
+		if(tmp.equals("a")){
+			for(int i=0;i<allpets.size();i++)
+				allpets.get(i).act(this);
 			return true;
-		
-		return false;
+		}
+		else
+			return false;
 	}
 	
 	@Override
@@ -32,12 +37,6 @@ public class ArenaLand extends POOArena{
     		for(int j=0;j<size;j++)
     			map[i][j] = '.';
     	
-		// create special region
-		map[0][0] = '―';
-    	map[0][size-1] = '―';
-    	map[size-1][0] = '―';
-    	map[size-1][size-1] = '―';
-    	
     	// locate pets' positions
     	for(int i=0;i<size;i++)
     		for(int j=0;j<size;j++){
@@ -46,7 +45,7 @@ public class ArenaLand extends POOArena{
     			char num = '1';
     			// check each pet
     			for(int k=0;k<allpets.size();k++,num++)
-    				if(point.equals(petCoordinates.get(k)))
+    				if(point.equals(allposi.get(k)))
     					map[i][j] = num;
     		}
     	printMap(map);
@@ -60,11 +59,21 @@ public class ArenaLand extends POOArena{
     	}
 	}
 	
+	
+	
     @Override
     public POOCoordinate getPosition(POOPet p){
     	return null;
     }
     
+    public int getPetNum(){
+    	return allpets.size();
+    }
+    
+    public Coordinate[] getAllPosi(){
+        Coordinate[] parr = new Coordinate[0];
+        return allposi.toArray(parr);
+    }
     
     private Coordinate makeRandomCoordinate(Coordinate c){
     	Random ran = new Random();
@@ -73,6 +82,7 @@ public class ArenaLand extends POOArena{
     	return c;
     }
 }
+
 class Coordinate extends POOCoordinate{
 	
 	public  boolean equals(POOCoordinate other){
