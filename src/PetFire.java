@@ -1,10 +1,7 @@
 package ntu.csie.oop13spring;
 
-import javax.annotation.PostConstruct;
-
 
 public class PetFire extends POOPet{
-	private Coordinate c ;
     private static int totalNum = 1;
 	public PetFire(){
 		if(totalNum==1)
@@ -46,41 +43,31 @@ public class PetFire extends POOPet{
 				max = distance;
 			}
 		}
-		int agi = this.getAGI();/*
+		int agi = this.getAGI();
 		while(agi>0){
-			distance = Math.abs(c.getX()+c.getY()-pet[near].getC().getX()-pet[near].getC().getY());
+			distance = Math.abs(posi[0].getX()+posi[0].getY()-posi[1].getX()-posi[1].getY());
 			// distance=1 means starting fight
 			
 			if(distance==1){
 				return null; 
 			}
-			if(this.c.getX() != pet[near].getC().getX()){
-				if(this.c.getX()> pet[near].getC().getX())
-					this.c.setX(this.c.getX()+1);
+			if(posi[0].getX() != posi[1].getX()){
+				if(posi[0].getX() < posi[1].getX())
+					posi[0].setX(posi[0].getX()+1);
 				else 
-					this.c.setX(this.c.getX()-1);
+					posi[0].setX(posi[0].getX()-1);
 			}
-			else if(this.c.getY() != pet[near].getC().getY()){
-				if(this.c.getY()> pet[near].getC().getY())
-					this.c.setY(this.c.getY()+1);
+			else if(posi[0].getY() != posi[1].getY()){
+				if(posi[0].getY() < posi[1].getY())
+					posi[0].setY(posi[0].getY()+1);
 				else 
-					this.c.setY(this.c.getY()-1);
+					posi[0].setY(posi[0].getY()-1);
 			}
 			
 			agi--;
-		}*/
-		return c;
+		}
+		return posi[0];
     }
-	public void setC(Coordinate c) {
-		this.c = c;
-	}
-	
-
-	
-	public Coordinate getC() {
-		return c;
-	}
-
 	
 
 	//skill
