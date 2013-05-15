@@ -8,7 +8,7 @@ public class PetWind extends POOPet{
 			setName("Wind");
 		else
 			setName("Wind"+totalNum);
-		setAGI(5);
+		setAGI(3);
 		setHP(100);
 		setMP(50);
 		totalNum++;

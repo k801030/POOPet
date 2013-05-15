@@ -8,7 +8,7 @@ public class PetFire extends POOPet{
 			setName("Fire");
 		else
 			setName("Fire"+totalNum);
-		setAGI(3);
+		setAGI(2);
 		setHP(100);
 		setMP(80);
 		totalNum++;

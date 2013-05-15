@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ArenaLand extends POOArena{
-	private final int size = 16;
+	private final int size = 8;
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
     private ArrayList<Coordinate> petCoordinates = new ArrayList<Coordinate>(0);
     private int round = 0;
@@ -16,8 +16,7 @@ public class ArenaLand extends POOArena{
     
 	@Override
 	public boolean fight(){
-		for(int i=0;i<allpets.size();i++)
-			System.out.println(allpets.get(i).getName());
+		
 		if(round++<1)
 			return true;
 		
@@ -35,9 +34,9 @@ public class ArenaLand extends POOArena{
     	
 		// create special region
 		map[0][0] = '―';
-    	map[0][15] = '―';
-    	map[15][0] = '―';
-    	map[15][15] = '―';
+    	map[0][size-1] = '―';
+    	map[size-1][0] = '―';
+    	map[size-1][size-1] = '―';
     	
     	// locate pets' positions
     	for(int i=0;i<size;i++)

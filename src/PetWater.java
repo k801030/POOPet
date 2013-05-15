@@ -8,7 +8,7 @@ public class PetWater extends POOPet{
 			setName("Water");
 		else
 			setName("Water"+totalNum);
-		setAGI(3);
+		setAGI(2);
 		setHP(90);
 		setMP(100);
 		totalNum++;
