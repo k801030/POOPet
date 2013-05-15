@@ -2,17 +2,15 @@ package ntu.csie.oop13spring;
 
 
 public class PetWater extends POOPet{
-    private int HP, MP, AGI;
-    private String name;
     private static int totalNum = 1;
 	public PetWater(){
 		if(totalNum==1)
 			setName("Water");
 		else
 			setName("Water"+totalNum);
-		setAGI(AGI);
-		setHP(HP);
-		setMP(MP);
+		setAGI(3);
+		setHP(90);
+		setMP(100);
 		totalNum++;
 		//System.out.println("success to load  MyPet1");
 	}
