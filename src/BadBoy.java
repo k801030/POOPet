@@ -1,12 +1,12 @@
 package ntu.csie.oop13spring;
 
 
-public class BadMan extends POOPet{
+public class BadBoy extends POOPet{
 	private POOPet me ;
 	private POOPet enemy ;
 
-	public BadMan(){
-		setName("BadMan");
+	public BadBoy(){
+		setName("BadBoy");
 		setAGI(2);
 		setHP(100);
 		setMP(80);
