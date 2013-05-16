@@ -1,7 +1,5 @@
 package ntu.csie.oop13spring;
 
-import sun.security.action.GetBooleanAction;
-
 
 public class BadMan extends POOPet{
 	private POOPet me ;
@@ -71,24 +69,28 @@ public class BadMan extends POOPet{
 		
 		POOAction action = new POOAction();
 		//skill
-		StrongKick strongKick = new StrongKick();
+		SendDiamond SendDiamond = new SendDiamond();
+		tinyKick tinyKick = new tinyKick();
 		PlayMobile playMobile = new PlayMobile();
 		Smoke smoke = new Smoke();
 		
 		int mp = this.getMP();
 		if(move(arena)==null){
-		
-			//start fight
+			//meet
+			
 			if(mp>50){
 				this.setMP(mp-50);
-				action = doAction(this, enemy,strongKick,strongKick.getName());
+				action = doAction(this, enemy,SendDiamond,SendDiamond.getActionName());
+			}else if(mp>10){
+				this.setMP(mp-10);
+				action = doAction(this, enemy,tinyKick,tinyKick.getActionName());
 			}
 		}else{
 			if(rand>=70){
-				action = doAction(this, me,playMobile,playMobile.getName());
+				action = doAction(this, me,playMobile,playMobile.getActionName());
 			}else{
 				
-				action = doAction(this, me,smoke,smoke.getName());
+				action = doAction(this, me,smoke,smoke.getActionName());
 				
 			}
 			
@@ -97,11 +99,11 @@ public class BadMan extends POOPet{
 		return action;
 	}
 	
-	private POOAction doAction(POOPet me, POOPet enemy, POOSkill skill, String skillName){
+	private POOAction doAction(POOPet me, POOPet enemy, POOSkill skill, String actionName){
 		POOAction action = new POOAction();
 		action.skill = skill;
 		action.dest = enemy;
-		System.out.println(me.getName()+" do "+skillName+" on "+enemy.getName());
+		System.out.println(me.getName()+": "+actionName);
 		
 		return action;
 	}
@@ -109,20 +111,31 @@ public class BadMan extends POOPet{
 
 }
 
-class StrongKick extends POOSkill{
+class SendDiamond extends POOSkill{
 	
 	public void act(POOPet pet){
 		int hp = pet.getHP();
-		int mp = pet.getMP();
 		
 		if(hp>0)
-			pet.setHP(hp-10);
-		if(mp>0)
-			pet.setMP(mp+1);
+			pet.setHP(hp-20);
 	}
 	
-	public String getName(){
-		return "Strong Kick";
+	public String getActionName(){
+		return "send Diamond to CuteGirl";
+	}
+}
+
+class tinyKick extends POOSkill{
+	
+	public void act(POOPet pet){
+		int hp = pet.getHP();
+		
+		if(hp>0)
+			pet.setHP(hp-20);
+	}
+	
+	public String getActionName(){
+		return "tiny Kick";
 	}
 }
 
@@ -134,8 +147,8 @@ class PlayMobile extends POOSkill{
 			pet.setMP(mp-1);
 	}
 	
-	public String getName(){
-		return "Play Mobile";
+	public String getActionName(){
+		return "Playing Mobile";
 	}
 }
 
@@ -146,19 +159,13 @@ class Smoke extends POOSkill{
 		int mp = pet.getMP();
 
 		if(hp>0)
-			pet.setHP(hp-1);
+			pet.setHP(hp-5);
 		if(mp>0)
-			pet.setMP(mp+1);
+			pet.setMP(mp+5);
 	}
 	
-	public String getName(){
-		return "Smoke";
+	public String getActionName(){
+		return "Smoking";
 	}
 }
 
-class ExplosionSkill extends POOSkill{
-	
-	public void act(POOPet pet){
-		
-	}
-}

@@ -56,7 +56,7 @@ public class BadWoman extends POOPet{
 	
 	@Override
 	protected POOAction act(POOArena arena){
-		
+		int rand = (int) (Math.random()*100);
 		POOPet[] pets = new POOPet[2];
 
 		ArenaLand arenaLand = (ArenaLand)arena;
@@ -65,19 +65,43 @@ public class BadWoman extends POOPet{
 		me = pets[1];
 		
 		POOAction action = new POOAction();
-		StrongKick strongKick = new StrongKick();
+		//skill
+		SendDiamond SendDiamond = new SendDiamond();
+		PlayMobile playMobile = new PlayMobile();
+		Smoke smoke = new Smoke();
+		
+		int mp = this.getMP();
 		if(move(arena)==null){
-			//start fight
-			action.dest = enemy;
-			action.skill = strongKick;
+			//meet
+			
+			if(mp>50){
+				this.setMP(mp-50);
+				action = doAction(this, enemy,SendDiamond,SendDiamond.getActionName());
+			}else if(mp>10){
+				this.setMP(mp-10);
+				//action = doAction(this, enemy,tinyKick,tinyKick.getActionName());
+			}
 		}else{
-			action.dest = me;
-			action.skill = strongKick;
+			if(rand>=70){
+				action = doAction(this, me,playMobile,playMobile.getActionName());
+			}else{
+				
+				action = doAction(this, me,smoke,smoke.getActionName());
+				
+			}
 			
 		}
 		
 		return action;
 	}
-
+	
+	private POOAction doAction(POOPet me, POOPet enemy, POOSkill skill, String actionName){
+		POOAction action = new POOAction();
+		action.skill = skill;
+		action.dest = enemy;
+		System.out.println(me.getName()+": "+actionName);
+		
+		return action;
+	}
 	
 }

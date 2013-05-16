@@ -19,10 +19,15 @@ public class ArenaLand extends POOArena{
     
 	@Override
 	public boolean fight(){
-		Scanner scanner = new Scanner(System.in);
+		
 		
 		
 		POOAction action = new POOAction();
+		
+		//enter any key to continue
+		try{
+	          System.in.read();
+	          }catch(Exception e){}
 		
 		//action
 		action = allpets.get(round).act(this);
@@ -31,7 +36,12 @@ public class ArenaLand extends POOArena{
 		
 		round+=1;
 		round%=allpets.size();
-		scanner.next();
+		
+		//enter any key to continue
+		try{
+	          System.in.read();
+	          }catch(Exception e){}
+	          
 		return true;
 
 	}
@@ -41,7 +51,6 @@ public class ArenaLand extends POOArena{
 		int x,y;
 		
 		// create basic map
-		Coordinate point = new Coordinate();
 		char[][] map = new char[size][size];
 		for(int i=0;i<size;i++)
     		for(int j=0;j<size;j++)
