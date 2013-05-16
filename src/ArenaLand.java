@@ -27,6 +27,7 @@ public class ArenaLand extends POOArena{
 				System.out.println("The CuteGirl is free herself from the BadBoy!");
 		}
 		
+		
 		POOAction action = new POOAction();
 		
 		//enter any key to continue
@@ -37,6 +38,12 @@ public class ArenaLand extends POOArena{
 	  	try{
 	  	       System.in.read();
 	  	}catch(Exception e){}
+	  	
+	  	//clear the screen
+	  	final String clear = "\033[2J";
+	  	System.out.print(clear);
+	  	
+	  	
 		//action
 		action = allpets.get(round).act(this);
 		// executive action
