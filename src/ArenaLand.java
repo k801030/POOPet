@@ -24,8 +24,11 @@ public class ArenaLand extends POOArena{
 		
 		POOAction action = new POOAction();
 		
+		//action
 		action = allpets.get(round).act(this);
-		//System.out.println(action.dest);
+		// executive action
+		action.skill.act(action.dest);
+		
 		round+=1;
 		round%=allpets.size();
 		scanner.next();
@@ -82,6 +85,8 @@ public class ArenaLand extends POOArena{
     	return null;
     }
     
+
+    
     public int getPetNum(){
     	return allpets.size();
     }
@@ -90,7 +95,10 @@ public class ArenaLand extends POOArena{
         Coordinate[] parr = new Coordinate[0];
         return allposi.toArray(parr);
     }
-    
+    public final POOPet[] getAllPets2(){
+        POOPet[] parr = new POOPet[0];
+        return allpets.toArray(parr);
+    }
     private Coordinate makeRandomCoordinate(Coordinate c){
     	Random ran = new Random();
         c.setX(ran.nextInt(size));

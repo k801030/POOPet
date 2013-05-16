@@ -2,7 +2,9 @@ package ntu.csie.oop13spring;
 
 
 public class BadWoman extends POOPet{
-    public BadWoman(){
+	private POOPet me ;
+	private POOPet enemy ;
+	public BadWoman(){
 			setName("BadWoman");
 		setAGI(2);
 		setHP(90);
@@ -10,16 +12,6 @@ public class BadWoman extends POOPet{
 
 	}
     
-	@Override
-	protected POOAction act(POOArena arena){
-		
-		move(arena);
-			//start fight
-			
-		
-
-		return null;
-	}
 
 	@Override
 	protected POOCoordinate move(POOArena arena){
@@ -61,6 +53,31 @@ public class BadWoman extends POOPet{
 		}
 		return posi[1];
     }
+	
+	@Override
+	protected POOAction act(POOArena arena){
+		
+		POOPet[] pets = new POOPet[2];
+
+		ArenaLand arenaLand = (ArenaLand)arena;
+		pets = arenaLand.getAllPets2();
+		enemy = pets[0];
+		me = pets[1];
+		
+		POOAction action = new POOAction();
+		StrongKick strongKick = new StrongKick();
+		if(move(arena)==null){
+			//start fight
+			action.dest = enemy;
+			action.skill = strongKick;
+		}else{
+			action.dest = me;
+			action.skill = strongKick;
+			
+		}
+		
+		return action;
+	}
 
 	
 }
