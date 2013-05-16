@@ -102,7 +102,7 @@ public class CuteGirl extends POOPet{
 				return action;
 			}
 				
-			this.setMP(mp+10);
+			this.setMP(mp+3);
 			action = doAction(this, other,doNotNotice,doNotNotice.getActionName());
 			return action;
 			
@@ -132,9 +132,8 @@ class WalkAround extends POOSkill{
 	public void act(POOPet pet){
 		int mp = pet.getMP();
 		int hp = pet.getHP();
-		if(mp>0)
-			pet.setMP(mp-1);
 		if(hp>0)
+			
 			pet.setHP(hp+1);
 	}
 	

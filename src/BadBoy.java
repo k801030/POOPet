@@ -103,7 +103,7 @@ public class BadBoy extends POOPet{
 				action = doAction(this, other,sendLoveLetter,sendLoveLetter.getActionName());
 				return action;
 			}
-			this.setMP(mp+10);
+			this.setMP(mp+1);
 			action = doAction(this, other,waitHer,waitHer.getActionName());
 			return action;
 			
@@ -130,7 +130,7 @@ class FirstMeet extends POOSkill{
 	
 	public void act(POOPet pet){
 		int mp = pet.getMP();
-			pet.setMP(mp+20);
+			pet.setMP(mp+10);
 	}
 	
 	public String getActionName(){
