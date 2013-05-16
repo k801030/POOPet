@@ -1,10 +1,7 @@
 #!/bin/sh
 
-ARENA_CLASS=
-PET1_CLASS=
-PET2_CLASS=
-PET3_CLASS=
-PET4_CLASS=
-PET5_CLASS=
+ARENA_CLASS=ntu.csie.oop13spring.ArenaLand
+PET1_CLASS=ntu.csie.oop13spring.BadBoy
+PET2_CLASS=ntu.csie.oop13spring.CuteGirl
 
-java -jar hw4.jar $ARENA_CLASS $PET1_CLASS $PET2_CLASS $PET3_CLASS $$PET4_CLASS $PET5_CLASS
+java -jar hw4.jar $ARENA_CLASS $PET1_CLASS $PET2_CLASS

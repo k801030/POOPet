@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class ArenaLand extends POOArena{
 	public final int size = 16;
+	private boolean init =false;
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
 	private ArrayList<Coordinate> allposi = new ArrayList<Coordinate>(0);
     private int round = 0;
@@ -18,8 +19,22 @@ public class ArenaLand extends POOArena{
     
 	@Override
 	public boolean fight(){
-		
-		if(end){
+		if(init==false){ 
+		// introduction
+			System.out.println("###################################");
+			System.out.println("#       RELATIONSHIP  ARENA       #");
+			System.out.println("###################################");
+			
+			System.out.println("It was a true story long time ago,");
+			System.out.println("A bad boy always wanna make girlfriend;");
+			System.out.println("while a cute girl do not wanna to have a bad boyfriend.");
+			System.out.println("It's a fight between them..");
+			System.out.println();
+			init=true;
+		}
+		if(!end){
+			System.out.println("\n(Enter \"enter\" key to continue..)");
+		}else{
 			System.out.println("\nFinally...");
 			if(round==1)
 				System.out.println("The BadBoy is in a relationship with the CuteGirl!");
