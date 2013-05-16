@@ -42,6 +42,7 @@ public class ArenaLand extends POOArena{
 				System.out.println("The BadBoy is in a relationship with the CuteGirl!");
 			else 
 				System.out.println("The CuteGirl is free herself from the BadBoy!");
+			return false;
 		}
 		
 		
