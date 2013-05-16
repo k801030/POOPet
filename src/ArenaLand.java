@@ -19,8 +19,10 @@ public class ArenaLand extends POOArena{
     
 	@Override
 	public boolean fight(){
+		final String clear = "\033[2J";
 		if(init==false){ 
 		// introduction
+			System.out.print(clear);
 			System.out.println("###################################");
 			System.out.println("#       RELATIONSHIP  ARENA       #");
 			System.out.println("###################################");
@@ -49,14 +51,11 @@ public class ArenaLand extends POOArena{
 		try{
 	          System.in.read();
 	    }catch(Exception e){}
-	    //enter any key to continue
-	  	try{
-	  	       System.in.read();
-	  	}catch(Exception e){}
+
 	  	
 	  	//clear the screen
-	  	final String clear = "\033[2J";
 	  	System.out.print(clear);
+	  	
 	  	
 	  	
 		//action
