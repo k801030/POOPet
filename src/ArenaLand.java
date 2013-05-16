@@ -1,15 +1,14 @@
 package ntu.csie.oop13spring;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
-import com.sun.corba.se.spi.orbutil.fsm.Action;
 
 public class ArenaLand extends POOArena{
-	private final int size = 16;
+	public final int size = 16;
 	private ArrayList<POOPet> allpets = new ArrayList<POOPet>(0);
 	private ArrayList<Coordinate> allposi = new ArrayList<Coordinate>(0);
     private int round = 0;
+    private boolean end = false;
     public void addPet(POOPet p){
         allpets.add(p);
         Coordinate c = new Coordinate();
@@ -20,15 +19,24 @@ public class ArenaLand extends POOArena{
 	@Override
 	public boolean fight(){
 		
-		
+		if(end){
+			System.out.println("\nFinally...");
+			if(round==1)
+				System.out.println("The BadBoy is in a relationship with the CuteGirl!");
+			else 
+				System.out.println("The CuteGirl is free herself from the BadBoy!");
+		}
 		
 		POOAction action = new POOAction();
 		
 		//enter any key to continue
 		try{
 	          System.in.read();
-	          }catch(Exception e){}
-		
+	    }catch(Exception e){}
+	    //enter any key to continue
+	  	try{
+	  	       System.in.read();
+	  	}catch(Exception e){}
 		//action
 		action = allpets.get(round).act(this);
 		// executive action
@@ -37,13 +45,13 @@ public class ArenaLand extends POOArena{
 		round+=1;
 		round%=allpets.size();
 		
-		//enter any key to continue
-		try{
-	          System.in.read();
-	          }catch(Exception e){}
-	          
+		// end the game in the next roop
+		if(action.dest.getHP()<=0){
+			end = true;
+		}
+	    
 		return true;
-
+		
 	}
 	
 	@Override
@@ -59,10 +67,26 @@ public class ArenaLand extends POOArena{
     	// locate pets' positions
     	x = allposi.get(0).getX();
     	y = allposi.get(0).getY();
+    	if(x<0)
+    		x=0;
+    	else if(x>size-1)
+    		x=size-1;
+    	if(y<0)
+    		y=0;
+    	else if(y>size-1)
+    		y=size-1;
     	map[y][x]= 'M'; 
     	
     	x = allposi.get(1).getX();
     	y = allposi.get(1).getY();
+    	if(x<0)
+    		x=0;
+    	else if(x>size-1)
+    		x=size-1;
+    	if(y<0)
+    		y=0;
+    	else if(y>size-1)
+    		y=size-1;
     	map[y][x]= 'W'; 
     	
     	printMap(map);

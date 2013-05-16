@@ -3,12 +3,13 @@ package ntu.csie.oop13spring;
 
 public class CuteGirl extends POOPet{
 	private POOPet me ;
-	private POOPet enemy ;
+	private POOPet other ;
+	private boolean meet = false;
 	public CuteGirl(){
 			setName("CuteGirl");
 		setAGI(2);
-		setHP(90);
-		setMP(100);
+		setHP(50);
+		setMP(50);
 
 	}
     
@@ -29,6 +30,7 @@ public class CuteGirl extends POOPet{
 			}
 		}
 		int agi = this.getAGI();
+		int rand;
 		while(agi>0){
 			distance = Math.abs(posi[0].getX()-posi[1].getX())+Math.abs(posi[0].getY()-posi[1].getY());
 			// distance=1 means starting fight
@@ -36,21 +38,23 @@ public class CuteGirl extends POOPet{
 			if(distance==1){
 				return null; 
 			}
-			if(posi[1].getX() != posi[0].getX()){
-				if(posi[1].getX() < posi[0].getX())
-					posi[1].setX(posi[1].getX()+1);
-				else 
-					posi[1].setX(posi[1].getX()-1);
+			rand = (int)(Math.random()*4);
+			if(rand==1){
+				posi[1].setX(posi[1].getX()+1);
+			}else if(rand==2){
+				posi[1].setX(posi[1].getX()-1);
+			}else if(rand==3){
+				posi[1].setY(posi[1].getY()+1);
+			}else{
+				posi[1].setY(posi[1].getY()-1);
 			}
-			else if(posi[1].getY() != posi[0].getY()){
-				if(posi[1].getY() < posi[0].getY())
-					posi[1].setY(posi[1].getY()+1);
-				else 
-					posi[1].setY(posi[1].getY()-1);
-			}
+
+
 			
 			agi--;
 		}
+		
+		
 		return posi[1];
     }
 	
@@ -61,47 +65,143 @@ public class CuteGirl extends POOPet{
 
 		ArenaLand arenaLand = (ArenaLand)arena;
 		pets = arenaLand.getAllPets2();
-		enemy = pets[0];
+		other = pets[0];
 		me = pets[1];
 		
 		POOAction action = new POOAction();
 		//skill
-		SendDiamond SendDiamond = new SendDiamond();
-		PlayMobile playMobile = new PlayMobile();
-		Smoke smoke = new Smoke();
 		
+		WalkAround walkAround = new WalkAround();
+		NotCool notCool = new NotCool();
+		NotHandSome notHandSome = new NotHandSome();
+		MomDisagree momDisagree = new MomDisagree();
+		DoNotNotice doNotNotice = new DoNotNotice();
+		HaveBoyFriend haveBoyFriend = new HaveBoyFriend();
 		int mp = this.getMP();
-		if(move(arena)==null){
+		int hp = this.getHP();
+		if(move(arena)==null && meet==true){
 			//meet
 			
-			if(mp>50){
-				this.setMP(mp-50);
-				action = doAction(this, enemy,SendDiamond,SendDiamond.getActionName());
-			}else if(mp>10){
+			if(mp>7 && rand>30){
 				this.setMP(mp-10);
-				//action = doAction(this, enemy,tinyKick,tinyKick.getActionName());
+				action = doAction(this, other,notCool,notCool.getActionName());
+				return action;
 			}
-		}else{
-			if(rand>=70){
-				action = doAction(this, me,playMobile,playMobile.getActionName());
-			}else{
-				
-				action = doAction(this, me,smoke,smoke.getActionName());
-				
+			if(mp>10 && rand>65){
+				this.setMP(mp-20);
+				action = doAction(this, other,notHandSome,notHandSome.getActionName());
+				return action;
 			}
+			if(mp>50 && hp <20){
+				this.setMP(mp-50);
+				action = doAction(this, me,momDisagree,momDisagree.getActionName());
+				return action;
+			}
+			if(rand>95){
+				action = doAction(this, other,haveBoyFriend,haveBoyFriend.getActionName());
+				return action;
+			}
+				
+			this.setMP(mp+10);
+			action = doAction(this, other,doNotNotice,doNotNotice.getActionName());
+			return action;
 			
+		}else{
+				action = doAction(this, me,walkAround,walkAround.getActionName());
+				return action;
 		}
-		
-		return action;
 	}
-	
-	private POOAction doAction(POOPet me, POOPet enemy, POOSkill skill, String actionName){
+	 
+	private POOAction doAction(POOPet me, POOPet other, POOSkill skill, String actionName){
 		POOAction action = new POOAction();
 		action.skill = skill;
-		action.dest = enemy;
+		action.dest = other;
 		System.out.println(me.getName()+": "+actionName);
 		
 		return action;
 	}
 	
+	public void ABoyCome(){
+		meet = true;
+	}
+	
+}
+
+class WalkAround extends POOSkill{
+	
+	public void act(POOPet pet){
+		int mp = pet.getMP();
+		int hp = pet.getHP();
+		if(mp>0)
+			pet.setMP(mp-1);
+		if(hp>0)
+			pet.setHP(hp+1);
+	}
+	
+	public String getActionName(){
+		return "Walk around";
+	}
+}
+
+class NotCool extends POOSkill{
+	
+	public void act(POOPet pet){
+		int hp = pet.getHP();
+		if(hp>0)
+			if(pet.setHP(hp-10)==false)
+				pet.setHP(0);
+	}
+	
+	public String getActionName(){
+		return "Tell him the wrong phone number";
+	}
+}
+
+class NotHandSome extends POOSkill{
+	
+	public void act(POOPet pet){
+		int hp = pet.getHP();
+		if(hp>0)
+			if(pet.setHP(hp-20)==false)
+				pet.setHP(0);
+	}
+	
+	public String getActionName(){
+		return "Laugh at him";
+	}
+}
+
+class MomDisagree extends POOSkill{
+	
+	public void act(POOPet pet){
+		int hp = pet.getHP();
+			pet.setHP(hp+50);
+	}
+	
+	public String getActionName(){
+		return "Ask mom for help";
+	}
+}
+
+class HaveBoyFriend extends POOSkill{
+	
+	public void act(POOPet pet){
+			pet.setHP(0);
+	}
+	
+	public String getActionName(){
+		return "Make other boy friend";
+	}
+}
+
+class DoNotNotice extends POOSkill{
+	
+	public void act(POOPet pet){
+		int hp = pet.getHP();
+		pet.setHP(hp-1);
+	}
+	
+	public String getActionName(){
+		return "Do not notice him";
+	}
 }
