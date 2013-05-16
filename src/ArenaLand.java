@@ -26,7 +26,7 @@ public class ArenaLand extends POOArena{
 			System.out.println("###################################");
 			
 			System.out.println("It was a true story long time ago,");
-			System.out.println("A bad boy always wanna make girlfriend;");
+			System.out.println("A bad boy always wanna make a girlfriend;");
 			System.out.println("while a cute girl do not wanna to have a bad boyfriend.");
 			System.out.println("It's a fight between them..");
 			System.out.println();

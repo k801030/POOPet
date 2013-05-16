@@ -1,7 +1,7 @@
 #!/bin/sh
 
-ARENA_CLASS=ntu.csie.oop13spring.ArenaLand
-PET1_CLASS=ntu.csie.oop13spring.BadBoy
-PET2_CLASS=ntu.csie.oop13spring.CuteGirl
+#!ARENA_CLASS=ntu.csie.oop13spring.ArenaLand
+#!PET1_CLASS=ntu.csie.oop13spring.BadBoy
+#!PET2_CLASS=ntu.csie.oop13spring.CuteGirl
 
-java -jar hw4.jar $ARENA_CLASS $PET1_CLASS $PET2_CLASS
+java -jar hw4.jar ntu.csie.oop13spring.ArenaLand ntu.csie.oop13spring.BadBoy ntu.csie.oop13spring.CuteGirl
